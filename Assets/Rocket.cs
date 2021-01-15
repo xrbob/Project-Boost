@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Rocket : MonoBehaviour {
 
-    [SerializeField] float rcsThrust = 100f;
+    [SerializeField] float rcsThrust = 125f;
     [SerializeField] float mainThrust = 175f;
 
     Rigidbody rigidBody;
@@ -47,19 +47,19 @@ public class Rocket : MonoBehaviour {
         
         float rotationThisFrame = rcsThrust * Time.deltaTime;
 
-        //rigidBody.freezeRotation = true;
+        rigidBody.freezeRotation = true;
 
         if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)) {
-            //transform.Rotate(Vector3.forward * rotationThisFrame);
-            rigidBody.AddRelativeTorque(Vector3.forward * rotationThisFrame);
-        }
+            transform.Rotate(Vector3.forward * rotationThisFrame);
+            //rigidBody.AddRelativeTorque(Vector3.forward * rotationThisFrame);
+        } 
 
         if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A)) {
-            //transform.Rotate(-Vector3.forward * rotationThisFrame);
-            rigidBody.AddRelativeTorque(-Vector3.forward * rotationThisFrame);
+            transform.Rotate(-Vector3.forward * rotationThisFrame);
+            //rigidBody.AddRelativeTorque(-Vector3.forward * rotationThisFrame);
         }
 
-        //rigidBody.freezeRotation = false;
+        rigidBody.freezeRotation = false;
     }
 
     void OnCollisionEnter(Collision collision) {
